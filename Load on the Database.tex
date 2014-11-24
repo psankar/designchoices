@@ -1,6 +1,6 @@
 \section{Load on the Database}
 
-The choice of the datastructures and the design of the individual components of a database system depends a lot on the load on the database. In addition to the raw \textbf{Input Output Operations Per Second (IOPS)} estimate, we also need to know the ratio of the type of the I/O requests (\textbf{read or write}). 
+The choice of the datastructures and the design of the individual components of a database system depends a lot on the load on the database. Having the estimated \textbf{Queries Per Second (QPS)} numbers for average and peak load on the database can help in choosing the design aspects.
 
 If the database will spend more than 99\% of the time on writes (say a logging application), then a Log Structured Merge Tree \cite{O_Neil_1996} may be effective; conversely, if 99\% of the time will be on reads, then memory maps may prove to be more efficient. So, understanding the application need is very important while designing a distributed database. Even while choosing an existing database, having knowledge about the nature of the database workload by the application(s) on top will be useful.
 
