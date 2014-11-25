@@ -2,13 +2,16 @@
 
 The choice of the datastructures and the design of the individual components of a database system depends a lot on the load on the database. The estimated \textbf{Queries Per Second (QPS)} numbers for the load on the database during average load and peak load, the duration for which the peak loads will continue will all come in handy.
 
-More than the number of the calls that the database receives, the ratio of the type of the database calls plays a big factor in choosing a design. We can roughly classify the type of the database calls to three buckets:
+More than the number of the calls that the database receives, the ratio of the type of the database calls plays a big factor in choosing a design. We can roughly classify the type of the database calls to the following four buckets:
 \begin{itemize}
-\item Insert: To create new records (write)
-\item Modify: To modify an existing record (write/delete)
-\item Select: To fetch a record, optionally based on a condition (read)
+\item INSERT: To create new records (write)
+\item UPDATE: To modify an existing record (write)
+\item DELETE: To remove a record (delete)
+\item SELECT: To fetch a record, optionally based on a condition (read)
 \end{itemize}
 
-If the database will spend more than 99\% of the time on writes (say a logging application), then a Log Structured Merge Tree \cite{O_Neil_1996} may be effective; conversely, if 99\% of the time will be on reads, then memory maps may prove to be more efficient. So, understanding the application need is very important while designing a distributed database. Even while choosing an existing database, having knowledge about the nature of the database workload by the application(s) on top will be useful.
+If the database will spend more than 99\% of the time on writes (Example: as the backend for a logging application), then a Log Structured Merge Tree \cite{O_Neil_1996} will be effective. Conversely, if 99\% of the time will be spent on reads and on a small set of hot keys, then using memory maps to load the pages from disk will be more efficient. If the reads will distributed on a large set of keys with no noticeable hotness in the keys, then memory maps will not give big benefits, as the working set size will be larger. If there is a combination of SELECT calls and UPDATE calls on the same set of keys, memory maps will be slower than doing regular I/O, due to the mixture of read and write where memory maps are not efficient.
+
+The way in which applications access the database and the way in which databases makes design choices, should both be in clear understanding of each other and should know each other's strength and weaknesses.
 
 Facebook started the Cassandra\cite{Lakshman_2009} distributed database project initially to perform well during parallel writes and later switched to HBase as they started running more data mining queries on the huge bigdata datasets that they have accumulated.
