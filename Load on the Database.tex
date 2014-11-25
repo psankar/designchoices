@@ -1,6 +1,13 @@
 \section{Load on the Database}
 
-The choice of the datastructures and the design of the individual components of a database system depends a lot on the load on the database. Having the estimated \textbf{Queries Per Second (QPS)} numbers for average and peak load on the database can help in choosing the design aspects.
+The choice of the datastructures and the design of the individual components of a database system depends a lot on the load on the database. The estimated \textbf{Queries Per Second (QPS)} numbers for the load on the database during average load and peak load, the duration for which the peak loads will continue will all come in handy.
+
+More than the number of the calls that the database receives, the ratio of the type of the database calls plays a big factor in choosing a design. We can roughly classify the type of the database calls to three buckets:
+\begin{itemize}
+\item Insert: To create new records (write)
+\item Modify: To modify an existing record (write/delete)
+\item Select: To fetch a record, optionally based on a condition (read)
+\end{itemize}
 
 If the database will spend more than 99\% of the time on writes (say a logging application), then a Log Structured Merge Tree \cite{O_Neil_1996} may be effective; conversely, if 99\% of the time will be on reads, then memory maps may prove to be more efficient. So, understanding the application need is very important while designing a distributed database. Even while choosing an existing database, having knowledge about the nature of the database workload by the application(s) on top will be useful.
 
