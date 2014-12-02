@@ -1,0 +1,24 @@
+Consistency Levels
+
+Should allow the application to set various levels of consistency, on the lines of fopen's (O_SYNC).
+
+Each DB write can be called SUCCESS or FAIL on various levels like:
+
+\begin{itemize}
+\item One node's memory
+\end{itemize}
+\begin{itemize}
+\item One node's disk
+\end{itemize}
+\begin{itemize}
+\item Quorum's designated replicated level
+\end{itemize}
+\begin{itemize}
+\item All nodes
+\end{itemize}
+
+Should we even allow a driver to set the last one ?
+
+The driver can choose the consistency level on a per-connection basis or on a per-command basis. For example, all writes should be at ONE consistency level whereas all reads need to be at Quorum consistency level.
+
+What is eventual consistency ? Explain.
