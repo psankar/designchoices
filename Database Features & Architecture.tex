@@ -30,9 +30,18 @@ Caching ?
 memory-only database ?
 Distributed nature only in memory but stored in disk in only a few machines ?
 
-LIMIT number of records returned ?
-ALLOW FILTERING to allow full table / non-index scans ?
-Duplicate query detection and result multicasting ?
+\begin{itemize}
+\item LIMIT number of records returned ?
+\end{itemize}
+\begin{itemize}
+\item ALLOW FILTERING to allow full table / non-index scans ?
+\end{itemize}
+\begin{itemize}
+\item Duplicate-queries-in-queue detection and result-multicasting ?
+\end{itemize}
+\begin{itemize}
+\item Buffer caching of records based on disk-adjacent records (like filesystem pagecache) or cache individual records (like memcache) ?
+\end{itemize}
 
 \subsection{Scalability}
 The relationship between increasing the number of nodes and the corresponding level of increase in the performance (Talk about Amdahl's law imposed limits, 10 women cannot deliver a baby in one month etc.)
