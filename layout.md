@@ -5,3 +5,4 @@ Access Methods.tex
 Distributed Consensus Algorithm.tex
 Database Features & Architecture.tex
 Consistency Levels.tex
+Monitoring.tex
